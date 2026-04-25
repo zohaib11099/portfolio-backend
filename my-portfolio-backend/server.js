@@ -7,20 +7,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Database Connection
-// Database Connection (Updated for Aiven Cloud)
+// Database Connection (Aiven Cloud Connection)
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT, // 🔥 Naya Port Add kiya
+    port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
-    ssl: { rejectUnauthorized: false } // 🔥 AIVEN KE LIYE YEH SAB SE ZAROORI HAI
+    ssl: { rejectUnauthorized: false }
 });
-// API Endpoint: Save User from Preloader
+
+// --- API Endpoints ---
+
+// 1. Save User from Preloader
 app.post('/api/init-visitor', async (req, res) => {
     const { name } = req.body;
     try {
@@ -31,7 +33,7 @@ app.post('/api/init-visitor', async (req, res) => {
     }
 });
 
-// API Endpoint: Submit Contact Form
+// 2. Submit Contact Form
 app.post('/api/contact', async (req, res) => {
     const { name, email, message } = req.body;
     try {
@@ -42,10 +44,7 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// API Endpoint: Save Game Score
+// 3. Save Game Score
 app.post('/api/score', async (req, res) => {
     const { visitor_name, score } = req.body;
     try {
@@ -56,13 +55,22 @@ app.post('/api/score', async (req, res) => {
     }
 });
 
-// API Endpoint: Get Top 5 Leaderboard
+// 4. Get Top 5 Leaderboard
 app.get('/api/leaderboard', async (req, res) => {
     try {
-        // Sirf top 5 highest scores fetch karega, highest first (DESC)
         const [rows] = await pool.query('SELECT visitor_name, score FROM game_scores ORDER BY score DESC LIMIT 5');
         res.json(rows);
     } catch (error) {
         res.status(500).json({ success: false, message: 'Database error', error });
     }
 });
+
+// 🔥 Vercel Deployment Fix:
+// Local par port 5000 par chalega, Vercel par automatically manage hoga
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// Vercel ke liye exports zaroori hai
+module.exports = app;
