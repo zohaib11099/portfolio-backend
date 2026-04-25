@@ -1,0 +1,145 @@
+/* 🌌 Main Wrapper */
+.skills-planet-wrapper {
+  height: 100vh; /* 🔥 FIX 1: 300vh کو 100vh کر دیا تاکہ فالتو گیپ ختم ہو جائے */
+  background: radial-gradient(circle at center, #0a0a1a 0%, #020205 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🧠 Title Section */
+.sp-title-container {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.sp-main-title {
+  font-size: 4.5rem;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(0, 234, 255, 0.8), 0 0 40px rgba(255, 0, 127, 0.6);
+  animation: floatTitle 3s ease-in-out infinite alternate;
+}
+
+.sp-subtitle {
+  color: #00ffcc;
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  text-shadow: 0 0 10px #00ffcc(0, 234, 255, 0.5);
+}
+
+@keyframes floatTitle {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
+}
+
+/* 🎥 Canvas Container */
+.sp-canvas-container {
+  width: 100%;
+  height: 100%; /* 🔥 FIX 2: 100vh سے 100% کر دیا */
+  position: absolute; /* 🔥 FIX 3: sticky سے absolute کر دیا تاکہ یہ اپنی جگہ پر فکس رہے */
+  top: 0;
+  left: 0;
+}
+
+/* 🧩 Orbiting Skill Icons */
+.sp-skill-icon-wrapper {
+  cursor: pointer;
+  background: rgba(10, 15, 30, 0.6);
+  backdrop-filter: blur(5px); /* Glassmorphism blur */
+  -webkit-backdrop-filter: blur(5px);
+  padding: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 234, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 234, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  transition: all 0.3s ease;
+}
+
+.sp-skill-icon-wrapper:hover {
+  transform: scale(1.2);
+  background: rgba(0, 234, 255, 0.2);
+  box-shadow: 0 0 25px rgba(0, 234, 255, 0.8);
+  border-color: rgba(0, 234, 255, 1);
+}
+
+.sp-skill-icon {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* 📋 Info Panel (Glassmorphism) */
+.sp-info-panel {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 320px;
+  background: rgba(5, 10, 20, 0.7);
+  backdrop-filter: blur(12px); /* Deep Glass blur */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 234, 255, 0.5);
+  border-radius: 15px;
+  padding: 25px;
+  color: white;
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 234, 255, 0.4) inset;
+  animation: slideInRight 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.sp-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+  padding-bottom: 10px;
+}
+
+.sp-info-title {
+  margin: 0;
+  color: #00eaff;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 234, 255, 0.5);
+}
+
+.sp-close-btn {
+  background: transparent;
+  border: none;
+  color: #ff007f;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: text-shadow 0.2s, transform 0.2s;
+}
+
+.sp-close-btn:hover {
+  text-shadow: 0 0 10px #ff007f;
+  transform: scale(1.1);
+}
+
+.sp-info-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}

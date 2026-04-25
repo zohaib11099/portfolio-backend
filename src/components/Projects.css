@@ -1,0 +1,178 @@
+/* Container aur Background CSS purani wali hi rahegi */
+.awwwards-projects {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #050505;
+  padding: 150px 0;
+  overflow: hidden;
+  cursor: pointer; /* Clickable feel dene ke liye */
+}
+
+.projects-list-container {
+  max-width: 90vw;
+  margin: 0 auto;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 20px;
+  margin-bottom: 40px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* JANI YAHAN SPACING BARHAYI HAI (pehle 40px tha ab 80px hai) */
+  padding: 80px 0; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s ease;
+  z-index: 10;
+  position: relative;
+}
+
+/* Jab koi project active ho toh doosre wale dim ho jayen */
+.project-row.dimmed {
+  opacity: 0.2;
+}
+
+.row-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.project-index {
+  color: #00ffcc;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.project-massive-title {
+  font-size: 7vw;
+  font-weight: 900;
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1;
+  color: transparent; 
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* CLICK HONE PAR EFFECT (.active class) */
+.project-row.active .project-massive-title {
+  color: #ffffff; 
+  -webkit-text-stroke: 1px transparent;
+  transform: translateX(40px); /* Active hone par text aage move hoga */
+}
+
+.row-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  text-align: right;
+  transition: transform 0.5s ease;
+}
+
+.project-row.active .row-right {
+  transform: translateX(-40px);
+}
+
+.project-category {
+  color: #a0a0a0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.project-year {
+  color: #555;
+  font-size: 1rem;
+}
+
+/* Floating Image */
+.project-image-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 250px;
+  border-radius: 10px;
+  pointer-events: none; 
+  z-index: 5; 
+  background-size: cover;
+  background-position: center;
+  transform: translate(-50%, -50%) scale(0); 
+  opacity: 0;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .project-row {
+    padding: 50px 0; /* Mobile par bhi thori space barha di */
+  }
+  .project-massive-title {
+    font-size: 3rem;
+  }
+  .row-left {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .project-image-cursor {
+    display: none;
+  }
+}
+
+
+/* --- MOBILE RESPONSIVENESS (Projects.css) --- */
+@media screen and (max-width: 768px) {
+  .awwwards-projects {
+    padding: 80px 0;
+  }
+
+  .project-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 0; /* Spacing kam ki */
+    gap: 20px;
+  }
+
+  .row-left {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .project-massive-title {
+    font-size: 3.5rem; /* Massive text ko mobile friendly kiya */
+  }
+
+  .row-right {
+    align-items: flex-start; /* Right se utha kar left align kiya */
+    text-align: left;
+  }
+
+  /* Hover/Click animations thodi simple kar di mobile par */
+  .project-row.active .project-massive-title {
+    transform: translateX(10px);
+  }
+  
+  .project-row.active .row-right {
+    transform: translateX(10px);
+  }
+}

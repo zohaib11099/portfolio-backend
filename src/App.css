@@ -1,0 +1,138 @@
+.portfolio-container {
+  background-color: transparent; /* Pura black color hata kar transparent kar diya */
+  overflow-x: hidden;
+}
+
+
+
+/* App.css (or index.css, updating existing classes) */
+
+.hero-section {
+  display: flex; /* Flex layout use karein */
+  height: 100vh;
+  width: 100%;
+}
+
+.hero-text-side {
+  width: 50%;
+  position: relative;
+  z-index: 20; /* Text ab Navbar (10) se upar rahega */
+  pointer-events: auto;
+}
+
+.hero-canvas-side {
+  width: 50%;
+  position: relative;
+  z-index: 5; /* Canvas sab se peeche rahega taake navbar ki blur is par asar na kare */
+  display: flex;
+  align-items: center;
+}
+
+.canvas-container {
+  width: 100%; 
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; /* Ye line border ko completely remove kar degi */
+  /* Ye model ko pichle background ke sath blend kar dega */
+}
+
+.canvas-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Canvas hamesha background mein rahega */
+}
+
+.ui-layer {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none; /* Taake user 3D model se interact kar sake background mein */
+}
+
+.ui-layer > * {
+  pointer-events: auto; /* Buttons aur text ko clickable banane ke liye */
+}
+
+.vip-global-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Sab sections ke peeche */
+  pointer-events: none; /* Mouse clicks iske aar-paar guzar jayen */
+  
+  /* Ek deep radial gradient jo edges ko dark rakhega aur center ko thoda focus dega */
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+}
+
+
+
+
+/* --- MOBILE RESPONSIVENESS (App.css) --- */
+@media screen and (max-width: 768px) {
+  .hero-section {
+    flex-direction: column; /* Side-by-side ki jagah upar-neeche */
+    height: auto;
+    min-height: 100vh;
+    padding-top: 120px; /* Navbar ke liye jagah */
+  }
+
+  .hero-text-side {
+    width: 100%;
+    padding: 20px;
+    text-align: center; /* Mobile par text center acha lagta hai */
+  }
+
+  .hero-title {
+    font-size: 3rem !important; /* Text chota kiya */
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin: 0 auto 30px auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    display: flex;
+  }
+
+  .hero-canvas-side {
+    width: 100%;
+    height: 50vh; /* Canvas ko fixed height de di */
+    margin-top: 20px;
+  }
+}
+
+
+/* --- GLOBAL TRANSPARENCY FIX --- */
+
+/* 1. Main body aur html ko transparent rakho */
+body, html, #root {
+  background-color: transparent !important;
+}
+
+/* 2. Portfolio container aur main tag se solid color hatana */
+.portfolio-container, main {
+  background-color: transparent !important;
+}
+
+/* 3. Saare sections ko ek sath transparent karo */
+section {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* 4. Agar tumne specific classes rakhi hain toh unko bhi check karo */
+.hero-section, 
+.projects-section, 
+.skills-section-wrapper, 
+.awwwards-projects, 
+.real-tree-section {
+  background: transparent !important;
+}

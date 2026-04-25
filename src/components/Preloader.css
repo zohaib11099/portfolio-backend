@@ -1,0 +1,145 @@
+.vip-hologram-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #050505;
+  background-image: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.preloader-content {
+  width: 100%;
+  max-width: 500px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading Phase Styles */
+.glitch-title {
+  color: #00ffcc;
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 5px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.progress-container {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #00ffcc;
+  box-shadow: 0 0 15px #00ffcc;
+  transition: width 0.15s linear;
+}
+
+.loading-data {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #a0a0a0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+/* Input Phase Styles */
+.identify-text {
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.guest-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.vip-guest-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(0, 255, 204, 0.3);
+  color: #00ffcc;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0;
+  outline: none;
+  text-transform: capitalize;
+  transition: border-color 0.3s ease;
+}
+
+.vip-guest-input:focus {
+  border-bottom-color: #00ffcc;
+}
+
+.vip-guest-input::placeholder {
+  color: rgba(255, 255, 255, 0.1);
+  font-weight: normal;
+}
+
+.enter-gate-btn {
+  background: transparent;
+  border: 1px solid #00ffcc;
+  color: #00ffcc;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.enter-gate-btn:hover {
+  background: #00ffcc;
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+}
+
+.enter-gate-btn.granted {
+  background: #00ffcc;
+  color: #000;
+  border-color: #00ffcc;
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.8);
+}
+
+.audio-hint {
+  margin-top: 50px;
+  color: #555;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
